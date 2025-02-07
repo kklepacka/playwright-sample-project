@@ -1,7 +1,5 @@
-/test-results
-/allure-results
-/allure-report
-/node_modules
-node_modules
-**/*.test.ts
-/.vscode
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
