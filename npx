@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "début script"
+# Ensure PREFIX is set, otherwise use the current directory
+PREFIX=${PREFIX:-$(pwd)}
+# Modify the npx command to always include --prefix
+command /home/kasia/.nvm/versions/node/v18.20.6/bin/npx --prefix "$PREFIX" "$@"
+"fin script"
