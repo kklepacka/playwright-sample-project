@@ -18,7 +18,7 @@ echo "Commande exécutée: $NPX_CMD $@"
 
 # Naviguer vers le répertoire de test
 if cd playwright-sample-project/n1/n2; then
-    ls  # Lister le contenu pour vérifier la navigation
+    echo "Répertoire changé avec succès."
 else
     echo "Erreur: Impossible de changer de répertoire." >&2
     exit 1
