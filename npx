@@ -7,7 +7,7 @@ echo "Début script"
 original_dir=$(pwd)
 
 # Dynamically find the NPX path
-NPX_CMD=$(nvm which current | sed 's/node$/npx/')
+NPX_CMD="$(npm bin -g)/npx"
 
 # Check if NPX is found
 if [[ -z "$NPX_CMD" ]]; then
