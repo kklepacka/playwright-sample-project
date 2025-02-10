@@ -1,12 +1,39 @@
 #!/bin/bash
-echo "début script"
+set -e  # Exit on error
 
-# Ensure PREFIX is set, otherwise use the current directory
+echo "Début script"
+
+# Store the original directory
 original_dir=$(pwd)
-echo "commande executée /home/kasia/.nvm/versions/node/v18.20.6/bin/npx "$@""
-cd playwright-sample-project/n1/n2 && ls
-# Modify the npx command to always include --prefix
-command /home/kasia/.nvm/versions/node/v18.20.6/bin/npx "$@"
-mv ./playwright-report/ ${original_dir}
-cd ${original_dir}
-echo "fin script"
+
+# Dynamically find the NPX path
+NPX_CMD=$(which npx)
+
+# Check if NPX is found
+if [[ -z "$NPX_CMD" ]]; then
+    echo "Erreur: npx introuvable. Assurez-vous que Node.js est installé." >&2
+    exit 1
+fi
+
+echo "Commande exécutée: $NPX_CMD $@"
+
+# Navigate to the test directory
+if cd playwright-sample-project/n1/n2; then
+    ls  # List contents to verify navigation
+else
+    echo "Erreur: Impossible de changer de répertoire." >&2
+    exit 1
+fi
+
+# Execute the npx command with the provided arguments
+$NPX_CMD "$@"
+
+# Move the Playwright report back to the original directory if it exists
+if [[ -d "./playwright-report" ]]; then
+    mv ./playwright-report/ "$original_dir"
+fi
+
+# Return to the original directory
+cd "$original_dir"
+
+echo "Fin script"
