@@ -2,13 +2,13 @@
 
 echo "Début script"
 
-# Store the original directory
+# Stocker le répertoire d'origine
 original_dir=$(pwd)
 
-# Dynamically find the NPX path
+# Trouver dynamiquement le chemin de NPX
 NPX_CMD="$HOME/.nvm/versions/node/$(node -v)/bin/npx"
 
-# Check if NPX is found
+# Vérifier si NPX est trouvé
 if [[ -z "$NPX_CMD" ]]; then
     echo "Erreur: npx introuvable. Assurez-vous que Node.js est installé." >&2
     exit 1
@@ -16,25 +16,25 @@ fi
 
 echo "Commande exécutée: $NPX_CMD $@"
 
-# Navigate to the test directory
+# Naviguer vers le répertoire de test
 if cd playwright-sample-project/n1/n2; then
-    ls  # List contents to verify navigation
+    ls  # Lister le contenu pour vérifier la navigation
 else
     echo "Erreur: Impossible de changer de répertoire." >&2
     exit 1
 fi
 
-# Execute the npx command with the provided arguments
+# Exécuter la commande npx avec les arguments fournis
 $NPX_CMD "$@"
 
-echo "Copier le dossier de rapports"
+echo "Copie du dossier de rapports"
 
-# Move the Playwright report back to the original directory if it exists
+# Déplacer le rapport Playwright vers le répertoire d'origine s'il existe
 if [[ -d "./playwright-report" ]]; then
     mv ./playwright-report/ "$original_dir"
 fi
 
-# Return to the original directory
+# Retourner au répertoire d'origine
 cd "$original_dir"
 
 echo "Fin script"
