@@ -7,6 +7,6 @@ echo "commande executée /home/kasia/.nvm/versions/node/v18.20.6/bin/npx "$@""
 cd playwright-sample-project/n1/n2 && ls
 # Modify the npx command to always include --prefix
 command /home/kasia/.nvm/versions/node/v18.20.6/bin/npx "$@"
-mv ./playwright-report ${original_dir}
+mv ./playwright-report/ ${original_dir}
 cd ${original_dir}
 echo "fin script"
