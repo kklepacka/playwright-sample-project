@@ -28,6 +28,8 @@ fi
 # Execute the npx command with the provided arguments
 $NPX_CMD "$@"
 
+echo "Copier le dossier de rapports"
+
 # Move the Playwright report back to the original directory if it exists
 if [[ -d "./playwright-report" ]]; then
     mv ./playwright-report/ "$original_dir"
